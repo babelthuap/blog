@@ -12,4 +12,3 @@ let m = {0: 1, 1: 1}, fib = n => m[n] ? m[n] : m[n] = fib(n - 1) + fib(n - 2);
 ```
 
 Pretty nifty.
-
