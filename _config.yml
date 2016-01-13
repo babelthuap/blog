@@ -5,7 +5,7 @@
 # Site
 title: Nicholas' Blag
 subtitle: JavaScripter and Mathist
-description:
+description: A Full-Stack JavaScript Developer Making His Way In The World
 author: Nicholas Neumann-Chun
 language: English
 timezone:
@@ -52,7 +52,7 @@ tag_map:
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date_format: MM-DD-YYYY
 time_format: HH:mm:ss
 
 # Pagination
