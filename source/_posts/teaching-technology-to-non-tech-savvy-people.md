@@ -2,7 +2,6 @@
 title: Teaching Technology to Non-tech-savvy People
 id: 19
 categories:
-  - Uncategorized
 date: 10-23-2015 19:56:04
 tags:
 ---

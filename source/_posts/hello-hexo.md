@@ -1,17 +1,15 @@
 ---
 title: Hello, Hexo
 categories:
-  - Uncategorized
 date: 01-12-2016
 tags:
 ---
 
-My name is Nicholas. I am currently in the [Coding House](https://codinghouse.co/) bootcamp program. Here I begin a new life! I will use this blog to document my progress towards becoming a software developer, and to share any interesting thoughts I come across along the way. For instance, this is a one-line memoized Fibonacci function:
+It has been quite a while since I last wrote a blog post. I used to have a blog on [WordPress](https://babelthuap.wordpress.com/), but hey -- *I know code now*. And I have more interesting things to say! For instance, I'm pretty proud of this one-line [memoized](https://en.wikipedia.org/wiki/Memoization) Fibonacci function:
 
 ```javascript
-let m = {0:1, 1:1}, fib = n => m[n] ? m[n] : m[n] = fib(n - 1) + fib(n - 2);
+let m = {0: 1, 1: 1}, fib = n => m[n] ? m[n] : m[n] = fib(n - 1) + fib(n - 2);
 ```
 
 Pretty nifty.
 
-I used to have a blog on [Wordpress](https://babelthuap.wordpress.com/), but hey -- *I know code now*. These first few posts are taken directly from my old blog.
