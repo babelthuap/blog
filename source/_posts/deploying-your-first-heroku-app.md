@@ -2,7 +2,6 @@
 title: Deploying Your First Heroku App
 id: 53
 categories:
-  - Uncategorized
 date: 11-10-2015 17:49:38
 tags:
 ---

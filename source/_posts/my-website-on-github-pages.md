@@ -2,7 +2,6 @@
 title: My Website on GitHub Pages
 id: 13
 categories:
-  - Uncategorized
 date: 09-27-2015 18:31:11
 tags:
 ---

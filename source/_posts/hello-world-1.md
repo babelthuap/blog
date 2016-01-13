@@ -2,7 +2,6 @@
 title: 'hello, world'
 id: 2
 categories:
-  - Uncategorized
 date: 09-02-2015 15:46:00
 tags:
 ---

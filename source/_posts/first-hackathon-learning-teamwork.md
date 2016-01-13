@@ -2,7 +2,6 @@
 title: 'First Hackathon: Learning Teamwork'
 id: 49
 categories:
-  - Uncategorized
 date: 11-09-2015 00:28:14
 tags:
 ---
