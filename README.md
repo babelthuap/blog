@@ -2,4 +2,10 @@
 
 _Powered by Hexo_
 
-To update my page on GitHub pages, I do `hexo generate --deploy`.
+To update my page on GitHub pages, I do
+
+```bash
+rm -rf public
+hexo generate
+hexo deploy
+```
