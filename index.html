@@ -99,7 +99,7 @@ ga('send', 'pageview');
 <p>TL;DR &rarr; There’s a JS Bin sample of working code at the end of this post.</p>
 <h2 id="With_Pen_And_Paper"><a href="#With_Pen_And_Paper" class="headerlink" title="With Pen And Paper"></a>With Pen And Paper</h2><p>First of all, what <em>is</em> a permutation of an array? It’s simply a reordering of the elements of that array. Think anagrams: the word “tops” contains the same letters as “spot”, just in a different order. We’d say that <code>[t, o, p, s]</code> is a permutation of <code>[s, p, o, t]</code>. That’s pretty simple.</p>
 <p>Now, how would we generate all possible permutations of an array? Before we think about telling a computer how to do it, let’s think about how to do it ourselves. For simplicity, let’s start by writing down all the permutations of <code>[a, b, c]</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start with a  |  start with b  |  start with c</span><br><span class="line">[a, b, c]     |  [b, a, c]     |  [c, a, b]</span><br><span class="line">[a, c, b]     |  [b, c, a]     |  [c, b, a]</span><br></pre></td></tr></table></figure>
+<p><img src="css/images/permutations.jpg"></p>
 <p>You might see the general pattern here. There are 3 possibilities for index 0. Then, for each of those, there are only 2 possibilities for index 1. Once you’ve chosen those, there’s only 1 choice left for index 2. That means there are 3 &times; 2 &times; 1 = 3! = <strong>6</strong> possible permutations, as we see above. Generalizing quickly, there must be <em>n</em>! permutations on an array with <em>n</em> elements.</p>
 <h2 id="Setting_Up_Our_Algorithm"><a href="#Setting_Up_Our_Algorithm" class="headerlink" title="Setting Up Our Algorithm"></a>Setting Up Our Algorithm</h2><p>Now we need to tell the computer how to do precisely what we did by hand. That is, we need to turn our loose pen-and-paper method into an algorithm. Setting it up is easy: we’ll create an array <code>perms</code>, add all the permutations of the input <code>arr</code> to it, then return <code>perms</code>, like so:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allPermutations</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> perms = [];</span><br><span class="line">  <span class="comment">// push all permutations of arr into 'permutations'</span></span><br><span class="line">  <span class="keyword">return</span> perms;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -118,7 +118,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cijdol4270000yi2fynpxcj1o" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cijdvdiya000bbi2f8wrdfbhy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/combinatorics/">combinatorics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/recursion/">recursion</a></li></ul>
@@ -159,7 +159,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/12/hello-hexo/" data-id="cijcax55k000wpe2fn4vq562a" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/12/hello-hexo/" data-id="cijdvdiyi000mbi2fsqb6cnaq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fibonacci/">fibonacci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li></ul>
@@ -221,7 +221,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijc9c2m80004h52f8ta60kdy" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijdvdixh0000bi2ffz9u4k0o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/heroku/">heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/">node</a></li></ul>
@@ -265,7 +265,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijc9c2mc0006h52f1phrgrvn" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijdvdiyn000qbi2fh4cmlm68" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hackathon/">hackathon</a></li></ul>
