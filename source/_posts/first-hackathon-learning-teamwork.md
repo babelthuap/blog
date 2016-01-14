@@ -4,6 +4,8 @@ id: 49
 categories:
 date: 11-09-2015 00:28:14
 tags:
+  - hackathon
+  - coding house
 ---
 
 ![](https://babelthuap.files.wordpress.com/2015/11/img_20151107_182201.jpg "Presenting Our Finished Project at The Hackathon")
