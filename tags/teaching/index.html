@@ -3,19 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Deploying Your First Heroku App | Nicholas&#39; Blag</title>
+  <title>Tag: teaching | Nicholas&#39; Blag</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I deployed my first Node.js app on Heroku last night! (Source code here.) After I figured it out, it seemed easy and straightforward. However, it took a little time to get there. I’d like to share wha">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Deploying Your First Heroku App">
-<meta property="og:url" content="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/index.html">
+  <meta name="description" content="A Full-Stack JavaScript Developer Making His Way In The World">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nicholas' Blag">
+<meta property="og:url" content="https://babelthuap.github.io/blog/tags/teaching/index.html">
 <meta property="og:site_name" content="Nicholas' Blag">
-<meta property="og:description" content="I deployed my first Node.js app on Heroku last night! (Source code here.) After I figured it out, it seemed easy and straightforward. However, it took a little time to get there. I’d like to share wha">
-<meta property="og:image" content="https://babelthuap.files.wordpress.com/2015/11/heroku_logo.png">
-<meta property="og:updated_time" content="2016-01-14T03:22:13.000Z">
+<meta property="og:description" content="A Full-Stack JavaScript Developer Making His Way In The World">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deploying Your First Heroku App">
-<meta name="twitter:description" content="I deployed my first Node.js app on Heroku last night! (Source code here.) After I figured it out, it seemed easy and straightforward. However, it took a little time to get there. I’d like to share wha">
+<meta name="twitter:title" content="Nicholas' Blag">
+<meta name="twitter:description" content="A Full-Stack JavaScript Developer Making His Way In The World">
   
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
@@ -73,86 +71,39 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-deploying-your-first-heroku-app" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2015/11/10/deploying-your-first-heroku-app/" class="article-date">
-  <time datetime="2015-11-11T01:49:38.000Z" itemprop="datePublished">Nov 10th, 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Deploying Your First Heroku App
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/blog/archives/2015" class="archive-year">2015</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/blog/2015/10/23/teaching-technology-to-non-tech-savvy-people/" class="archive-article-date">
+  <time datetime="2015-10-24T02:56:04.000Z" itemprop="datePublished">Oct 23</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/blog/2015/10/23/teaching-technology-to-non-tech-savvy-people/">Teaching Technology to Non-Tech-Savvy People</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://babelthuap.files.wordpress.com/2015/11/heroku_logo.png" alt="" title="Heroku logo"></p>
-<p>I deployed <a href="https://secure-earth-5739.herokuapp.com/" target="_blank" rel="external">my first Node.js app on Heroku</a> last night! (Source code <a href="https://github.com/babelthuap/markdown-to-html" target="_blank" rel="external">here</a>.) <em>After</em> I figured it out, it seemed easy and straightforward. However, it took a little time to get there. I’d like to share what worked for me.</p>
-<p>The <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" target="_blank" rel="external">tutorial</a> on the Heroku site seems beginner-friendly, and it mostly is. There are a few key steps, however, without which your first deployment will not be easy. Here’s a quick summary of what you actually need to do:</p>
-<ol>
-<li><p>Make sure your project directory is a git repo.</p>
-</li>
-<li><p>Make sure your package.json correctly lists all your npm package dependencies.</p>
-</li>
-<li><p>Add a “start” script to your package.json. That is, supposing your server is called app.js, add</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"node app.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Specify, in your package.json, the engine you’re using. Supposing you want to use 5.0.0, you need</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"engines"</span>: &#123;</span><br><span class="line">  <span class="string">"node"</span>: <span class="string">"5.0.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>You need to be able to test your server locally and also have it work on Heroku. Set it to listen at</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.env.PORT || <span class="number">3000</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Set up Heroku Toolbelt via <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up" target="_blank" rel="external">these instructions</a>.</p>
-</li>
-<li><p>Finally, deploy your app with <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app" target="_blank" rel="external">these commands</a>. If all goes well, you should now have an app deployed to Heroku! To update it, you just need to commit your changes via git, then do</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><em>See <a href="https://scotch.io/tutorials/how-to-deploy-a-node-js-app-to-heroku" target="_blank" rel="external">here</a> for a more in-depth walkthrough.</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijc9c2m80004h52f8ta60kdy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/heroku/">heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/">node</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/blog/2016/01/12/hello-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Hello, Hexo
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/2015/11/09/first-hackathon-learning-teamwork/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">First Hackathon: Learning Teamwork</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
 </section>
         
