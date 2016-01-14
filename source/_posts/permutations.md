@@ -17,11 +17,7 @@ First of all, what _is_ a permutation of an array? It's simply a reordering of t
 
 Now, how would we generate all possible permutations of an array? Before we think about telling a computer how to do it, let's think about how to do it ourselves. For simplicity, let's start by writing down all the permutations of `[a, b, c]`:
 
-```bash
-start with a  |  start with b  |  start with c
-[a, b, c]     |  [b, a, c]     |  [c, a, b]
-[a, c, b]     |  [b, c, a]     |  [c, b, a]
-```
+<img src="css/images/permutations.jpg">
 
 You might see the general pattern here. There are 3 possibilities for index 0. Then, for each of those, there are only 2 possibilities for index 1. Once you've chosen those, there's only 1 choice left for index 2. That means there are 3 &times; 2 &times; 1 = 3! = **6** possible permutations, as we see above. Generalizing quickly, there must be *n*! permutations on an array with *n* elements.
 
