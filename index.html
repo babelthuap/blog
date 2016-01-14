@@ -112,13 +112,13 @@ ga('send', 'pageview');
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> remaining = arr.slice(<span class="number">0</span>, i).concat(arr.slice(i + <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
 <p>We can then call <code>allPermutations</code> on <code>remaining</code>. For each permutation, we’ll prepend <code>firstElement</code>, then add it to <code>perms</code> (which, remember, is supposed to eventually be the collection of all permutations that we want).</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">allPermutations</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> perms = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> firstElement = arr[i];</span><br><span class="line">    <span class="keyword">var</span> permsOnElem = [];</span><br><span class="line">    <span class="keyword">var</span> remaining = arr.slice(<span class="number">0</span>, i).concat(arr.slice(i + <span class="number">1</span>));</span><br><span class="line">    allPermutations(remaining).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">perm</span>) </span>&#123;</span><br><span class="line">      permsOnElem.push( [firstElement].concat(perm) );</span><br><span class="line">    &#125;);</span><br><span class="line">    perms = perms.concat(permsOnElem);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> perms;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>We’re almost there! The last thing our recursive function needs is a base case. This tells is when to stop recursing. This is usually the trivial case. Here, the base case can be when <code>arr</code> only has 1 element. In that case, there’s only one permutation! Put that in, and our final code is</p>
+<p>We’re almost there! The last thing our recursive function needs is a <em>base case</em>. This tells is when to stop recursing. It is usually the trivial case. Here, the base case can be when <code>arr</code> only has 1 element. In that case, there’s only one permutation! Put that in, and our final code is</p>
 <p><a class="jsbin-embed" href="http://jsbin.com/sunuhi/embed?js" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cijdw7l0i000bjq2ffsnzfghh" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cijdwd5vc000blp2fjtn5ds27" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/combinatorics/">combinatorics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/recursion/">recursion</a></li></ul>
@@ -159,7 +159,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/12/hello-hexo/" data-id="cijdw7l0u000mjq2fdr973ih2" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/12/hello-hexo/" data-id="cijdwd5vm000mlp2fk4u1vauq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/fibonacci/">fibonacci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li></ul>
@@ -221,7 +221,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijdw7kzp0000jq2ffdwiz6pq" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijdwd5u90000lp2fwc7sftff" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/heroku/">heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/">node</a></li></ul>
@@ -265,7 +265,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijdw7l0y000qjq2f9geemmi4" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijdwd5vp000qlp2f7rt9osc0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hackathon/">hackathon</a></li></ul>
