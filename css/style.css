@@ -522,6 +522,8 @@ body {
 }
 .article-date {
   float: left;
+  text-transform: none;
+  letter-spacing: 0px;
 }
 .article-category {
   float: left;
@@ -1121,9 +1123,8 @@ a.article-title:hover {
   font-family: Monaco, "Source Code Pro", Menlo, Consolas, monospace;
 }
 .article-entry code {
-  background: #000;
-  text-shadow: 0 1px #fff;
   padding: 0 0.3em;
+  white-space: nowrap;
 }
 .article-entry pre code {
   background: none;
