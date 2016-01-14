@@ -4,6 +4,7 @@ id: 19
 categories:
 date: 10-23-2015 19:56:04
 tags:
+  - teaching
 ---
 
 ![](https://babelthuap.files.wordpress.com/2015/10/confusing-md.jpg "What is this stuff?")
