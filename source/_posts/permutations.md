@@ -5,6 +5,7 @@ tags:
   - javascript 
   - combinatorics
   - recursion
+  - algorithms
 ---
 
 Today I'll be tackling the problem of **generating all permutations of a given array**. This is a fun problem to solve using recursion. I will assume that you are familiar with JavaScript.
@@ -17,7 +18,7 @@ First of all, what _is_ a permutation of an array? It's simply a reordering of t
 
 Now, how would we generate all possible permutations of an array? Before we think about telling a computer how to do it, let's think about how to do it ourselves. For simplicity, let's start by writing down all the permutations of `[a, b, c]`:
 
-<img src="css/images/permutations.jpg">
+<img src="/blog/css/images/permutations.jpg">
 
 You might see the general pattern here. There are 3 possibilities for index 0. Then, for each of those, there are only 2 possibilities for index 1. Once you've chosen those, there's only 1 choice left for index 2. That means there are 3 &times; 2 &times; 1 = 3! = **6** possible permutations, as we see above. Generalizing quickly, there must be *n*! permutations on an array with *n* elements.
 
@@ -33,7 +34,7 @@ function allPermutations(arr) {
 }
 ```
 
-As we saw above, there are **n** possibilities for index 0. Let's loop through those possibilities (the **n** elements of `arr`) and set that as the first element of a permutation. We'll then need to generate all the permutations of `arr` which start with that first element.
+As we saw above, there are *n* possibilities for index 0. Let's loop through those possibilities (the *n* elements of `arr`) and set that as the first element of a permutation. We'll then need to generate all the permutations of `arr` which start with that first element.
 
 ```javascript
 function allPermutations(arr) {
@@ -86,6 +87,6 @@ function allPermutations(arr) {
 }
 ```
 
-We're almost there! The last thing our recursive function needs is a base case. This tells is when to stop recursing. This is usually the trivial case. Here, the base case can be when `arr` only has 1 element. In that case, there's only one permutation! Put that in, and our final code is
+We're almost there! The last thing our recursive function needs is a *base case*. This tells is when to stop recursing. It is usually the trivial case. Here, the base case can be when `arr` only has 1 element. In that case, there's only one permutation! Put that in, and our final code is
 
 <a class="jsbin-embed" href="http://jsbin.com/sunuhi/embed?js">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script>
