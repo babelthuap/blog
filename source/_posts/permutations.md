@@ -8,7 +8,7 @@ tags:
   - algorithms
 ---
 
-Today I'll be tackling the problem of **generating all permutations of a given array**. This is a fun problem to solve using recursion. I will assume that you are familiar with JavaScript.
+Today I'll be tackling the problem of **generating all permutations of an array**. This is a fun problem to solve using recursion. I will assume that you are familiar with JavaScript.
 
 TL;DR &rarr; There's a JS Bin sample of working code at the end of this post.
 
