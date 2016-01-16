@@ -1,5 +1,5 @@
 ---
-title: Generating All Unique Subsequences And Sorting
+title: Generating And Sorting Subsequences
 date: 2016-01-15 22:06:50
 tags:
   - javascript 
@@ -7,11 +7,15 @@ tags:
   - algorithms
 ---
 
+<img src="/blog/css/images/PascalTriangle.jpg" alt="bonus kudos if you can figure out why this picture is relevant">
+
 ## The Challenge
 
 We recently received a code challenge similar to the following here at [Coding House](https://codinghouse.co/): _Given a string `str`, generate a lexicographically sorted array containing all unique subsequences of `str`._ Challenge accepted!
 
 There are two parts to this problem: (1) generating the subsequences and (2) returning a sorted array. Although they will end up intertwined, I'll treat them one at a time.
+
+TL;DR &rarr; There's a JS Bin sample of working code at the end of this post.
 
 ## Generating The Subsequences
 
@@ -35,7 +39,7 @@ The trick is to think of this as "which letters are we keeping vs. which are we 
 
 Aha! Each subsequence of `'abcd'` corresponds with a binary number between `0000` and `1111`. Thus, to generate all subsequences, we need only iterate through all numbers from 0 up through 2^4 - 1 and map each number to its corresponding subsequence. Let's put that into code.
 
-Our `for` loop will start at 0 and go up to 2^n. An easy way to calculate 2^n is with the expression `1 << n`, using the [bitshift operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators). On each iteration, we need to take the iteration variable (let's call it `i`) and turn it into a binary string of the right length. We can convert `i` to binary with `i.toString(2)`, but this will output a string like so:
+Our `for` loop will start at 0 and go up to 2^*n*. An easy way to calculate 2^*n* is with the expression `1 << n`, using the [bitshift operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators). On each iteration, we need to take the iteration variable (let's call it `i`) and turn it into a binary string of the right length. We can convert `i` to binary with `i.toString(2)`, but this will output a string like so:
 
 ```javascript
 (0).toString(2) -> "0"
@@ -53,31 +57,25 @@ var binary = (padding + i.toString(2)).slice(-str.length);
 The last piece of the puzzle is to map this string `binary` to the subsequence it represents. That's fairly straightforward. We split `binary` into an array, map it, then join it:
 
 ```javascript
-binary.split('').map((x, index) => x === '1' ? str[index] : '').join('')
+binary.split('').map((digit, index) => digit === '1' ? str[index] : '').join('')
+```
+
+We can separate out the function inside `map` to make this operation more readable:
+
+```javascript
+var binaryToSubseq = function(digit, index) {
+  return digit === '1' ? str[index] : '';
+};
+binary.split('').map(binaryToSubseq).join(''); // much nicer!
 ```
 
 ## Sorting The Output Array
 
 We've almost got a working piece of code! We just need to store the generated subsequences somewhere. An easy option is to use a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set), which will take care of uniqueness for us. When we're done with the generating, we can just convert the Set to an Array, sort it, and return it. Let's see what we have:
 
-```javascript
-function subsequences(str) {
-  var subseqs = new Set(); // initialize an empty Set
-  var padding = '0'.repeat(str.length - 1); // this doesn't need to be inside the loop
+<a class="jsbin-embed" href="http://jsbin.com/zulobe/embed?js">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script>
 
-  for (var i = 0; i < (1 << str.length); i++) {
-    var binary = (padding + i.toString(2)).slice(-str.length);
-    var subseq = binary.split('')
-                       .map((x, index) => x === '1' ? str[index] : '')
-                       .join('');
-    subseqs.add(subseq); // insert a new subsequence ONLY IF it's not already in 'subseqs'
-  }
-
-  return Array.from(subseqs).sort();
-}
-```
-
-This works! Woohoo! Try it out.
+It works! Woohoo! Try it out.
 
 However... we can do better. Basically, we want to maintain a sorted collection as we add subsequences. We need two things to do so efficiently: an algorithm and a suitable data structure. I'm thinking of binary insertion for the algorithm. But can you think of a suitable data structure? Arrays have linear insertion -- that's no good. Is there some kind of tree that will work? I'll let you ponder that. :)
 
