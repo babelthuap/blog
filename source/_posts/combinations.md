@@ -1,5 +1,5 @@
 ---
-title: Generating And Sorting Subsequences
+title: Generating and Sorting Subsequences
 date: 2016-01-15 22:06:50
 tags:
   - javascript 
