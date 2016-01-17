@@ -73,6 +73,68 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-deploying-your-first-heroku-app" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/11/10/deploying-your-first-heroku-app/" class="article-date">
+  <time datetime="2015-11-11T01:49:38.000Z" itemprop="datePublished">Nov 10th, 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2015/11/10/deploying-your-first-heroku-app/">Deploying Your First Heroku App</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://babelthuap.files.wordpress.com/2015/11/heroku_logo.png" alt="" title="Heroku logo"></p>
+<p>I deployed <a href="https://secure-earth-5739.herokuapp.com/" target="_blank" rel="external">my first Node.js app on Heroku</a> last night! (Source code <a href="https://github.com/babelthuap/markdown-to-html" target="_blank" rel="external">here</a>.) <em>After</em> I figured it out, it seemed easy and straightforward. However, it took a little time to get there. I’d like to share what worked for me.</p>
+<p>The <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs" target="_blank" rel="external">tutorial</a> on the Heroku site seems beginner-friendly, and it mostly is. There are a few key steps, however, without which your first deployment will not be easy. Here’s a quick summary of what you actually need to do:</p>
+<ol>
+<li><p>Make sure your project directory is a git repo.</p>
+</li>
+<li><p>Make sure your package.json correctly lists all your npm package dependencies.</p>
+</li>
+<li><p>Add a “start” script to your package.json. That is, supposing your server is called app.js, add</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">  <span class="string">"start"</span>: <span class="string">"node app.js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Specify, in your package.json, the engine you’re using. Supposing you want to use 5.0.0, you need</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"engines"</span>: &#123;</span><br><span class="line">  <span class="string">"node"</span>: <span class="string">"5.0.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You need to be able to test your server locally and also have it work on Heroku. Set it to listen at</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.env.PORT || <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Set up Heroku Toolbelt via <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up" target="_blank" rel="external">these instructions</a>.</p>
+</li>
+<li><p>Finally, deploy your app with <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app" target="_blank" rel="external">these commands</a>. If all goes well, you should now have an app deployed to Heroku! To update it, you just need to commit your changes via git, then do</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push heroku master</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><em>See <a href="https://scotch.io/tutorials/how-to-deploy-a-node-js-app-to-heroku" target="_blank" rel="external">here</a> for a more in-depth walkthrough.</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://babelthuap.github.io/blog/2015/11/10/deploying-your-first-heroku-app/" data-id="cijgtd6yo000uyj2fl7zvmp9w" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/heroku/">heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-first-hackathon-learning-teamwork" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2015/11/09/first-hackathon-learning-teamwork/" class="article-date">
@@ -105,7 +167,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijho52w8000qa62f3qmv01jy" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/11/09/first-hackathon-learning-teamwork/" data-id="cijgtd6yj000qyj2fuhnjo57z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hackathon/">hackathon</a></li></ul>
@@ -157,7 +219,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/10/23/teaching-technology-to-non-tech-savvy-people/" data-id="cijho52vs0008a62fqv4voail" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2015/10/23/teaching-technology-to-non-tech-savvy-people/" data-id="cijgtd6xz0008yj2fxjwgfn6o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/teaching/">teaching</a></li></ul>
@@ -169,88 +231,10 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-my-website-on-github-pages" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2015/09/27/my-website-on-github-pages/" class="article-date">
-  <time datetime="2015-09-28T01:31:11.000Z" itemprop="datePublished">Sep 27th, 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/09/27/my-website-on-github-pages/">My Website on GitHub Pages</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I’ve been busy with the pre-work for Coding House.  So far, I’ve learned some JavaScript, HTML, CSS, jQuery, Bootstrap, and right now I’m working on AJAX.  It’s exciting stuff!  I just finished the first project that’s worth sharing, which I uploaded to <a href="http://babelthuap.github.io/">my site on GitHub pages</a>.  Check it out.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/09/27/my-website-on-github-pages/" data-id="cijho52vz000ha62fi9g5f8va" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2015/09/02/hello-world/" class="article-date">
-  <time datetime="2015-09-02T22:46:00.000Z" itemprop="datePublished">Sep 2nd, 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/09/02/hello-world/">Hello, World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>My name is Nicholas. I was recently accepted to the <a href="https://codinghouse.co" target="_blank" rel="external">Coding House</a> bootcamp program. Thus begins a new life! I will use this website to document my progress towards becoming a software developer, and to share any interesting thoughts I come across along the way.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2015/09/02/hello-world/" data-id="cijho52w3000ka62ff1lovays" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/coding-house/">coding house</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">Next &raquo;</a>
   </nav>
 </section>
         
@@ -269,26 +253,6 @@ ga('send', 'pageview');
     </p>
   </div>
 </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/algorithms/">algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/coding-house/">coding house</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/combinatorics/">combinatorics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/fibonacci/">fibonacci</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/hackathon/">hackathon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/heroku/">heroku</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/recursion/">recursion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/blog/tags/teaching/">teaching</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">September 2015</a></li></ul>
-    </div>
-  </div>
-
 
   
     
@@ -320,6 +284,25 @@ ga('send', 'pageview');
       </ul>
     </div>
   </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/blog/tags/algorithms/" style="font-size: 13.33px;">algorithms</a> <a href="/blog/tags/coding-house/" style="font-size: 20px;">coding house</a> <a href="/blog/tags/combinatorics/" style="font-size: 13.33px;">combinatorics</a> <a href="/blog/tags/fibonacci/" style="font-size: 10px;">fibonacci</a> <a href="/blog/tags/hackathon/" style="font-size: 10px;">hackathon</a> <a href="/blog/tags/heroku/" style="font-size: 10px;">heroku</a> <a href="/blog/tags/javascript/" style="font-size: 16.67px;">javascript</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/blog/tags/teaching/" style="font-size: 10px;">teaching</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2015/09/">September 2015</a></li></ul>
+    </div>
+  </div>
+
 
   
 </aside>
