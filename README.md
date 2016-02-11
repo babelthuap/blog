@@ -9,3 +9,11 @@ rm -rf public
 hexo generate
 hexo deploy
 ```
+
+To create a new post, I do
+
+```bash
+hexo new <title>
+```
+
+While writing, I run `hexo server` and `hexo generate --watch` simultaneously.

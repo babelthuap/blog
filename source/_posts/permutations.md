@@ -20,7 +20,7 @@ Now, how would we generate all possible permutations of an array? Before we thin
 
 <img src="/blog/css/images/permutations.jpg">
 
-You might see the general pattern here. There are 3 possibilities for index 0. Then, for each of those, there are only 2 possibilities for index 1. Once you've chosen those, there's only 1 choice left for index 2. That means there are 3 &times; 2 &times; 1 = 3! = **6** possible permutations, as we see above. Generalizing quickly, there must be *n*! permutations on an array with *n* elements.
+You might see the general pattern here. There are $3$ possibilities for index 0. Then, for each of those, there are only $2$ possibilities for index 1. Once you've chosen those, there's only $1$ choice left for index 2. That means there are $3 \times 2 \times 1 = 3! = 6$ possible permutations, as we see above. Generalizing quickly, there must be $n!$ permutations on an array with $n$ elements.
 
 ## Setting Up Our Algorithm
 
@@ -34,7 +34,7 @@ function allPermutations(arr) {
 }
 ```
 
-As we saw above, there are *n* possibilities for index 0. Let's loop through those possibilities (the *n* elements of `arr`) and set that as the first element of a permutation. We'll then need to generate all the permutations of `arr` which start with that first element.
+As we saw above, there are $n$ possibilities for index 0. Let's loop through those possibilities (the $n$ elements of `arr`) and set that as the first element of a permutation. We'll then need to generate all the permutations of `arr` which start with that first element.
 
 ```javascript
 function allPermutations(arr) {

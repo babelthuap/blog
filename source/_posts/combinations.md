@@ -37,9 +37,9 @@ The trick is to think of this as "which letters are we keeping vs. which are we 
 ->  a b c d         b             b   d       a   c d
 ```
 
-Aha! Each subsequence of `'abcd'` corresponds with a binary number between `0000` and `1111`. Thus, to generate all subsequences, we need only iterate through all numbers from 0 up through 2^4 - 1 and map each number to its corresponding subsequence. Let's put that into code.
+Aha! Each subsequence of `'abcd'` corresponds with a binary number between `0000` and `1111`. Thus, to generate all subsequences, we need only iterate through all numbers from $0$ up through $2^4 - 1$ and map each number to its corresponding subsequence. Let's put that into code.
 
-Our `for` loop will start at 0 and go up to 2^*n*. An easy way to calculate 2^*n* is with the expression `1 << n`, using the [bitshift operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators). On each iteration, we need to take the iteration variable (let's call it `i`) and turn it into a binary string of the right length. We can convert `i` to binary with `i.toString(2)`, but this will output a string like so:
+Our `for` loop will start at $0$ and go up to $2^n$. An easy way to calculate $2^n$ is with the expression `1 << n`, using the [bitshift operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators). On each iteration, we need to take the iteration variable (let's call it `i`) and turn it into a binary string of the right length. We can convert `i` to binary with `i.toString(2)`, but this will output a string like so:
 
 ```javascript
 (0).toString(2) -> "0"
@@ -76,7 +76,3 @@ We've almost got a working piece of code! We just need to store the generated su
 <a class="jsbin-embed" href="http://jsbin.com/zulobe/embed?js">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.min.js?3.35.9"></script>
 
 It works! Woohoo! Try it out.
-
-However... we can do better. Basically, we want to maintain a sorted collection as we add subsequences. We need two things to do so efficiently: an algorithm and a suitable data structure. I'm thinking of binary insertion for the algorithm. But can you think of a suitable data structure? Arrays have linear insertion -- that's no good. Is there some kind of tree that will work? I'll let you ponder that. :)
-
-_TO BE CONTINUED_
