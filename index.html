@@ -87,7 +87,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/02/11/triangle/">Triangle</a>
+      <a class="article-title" href="/blog/2016/02/11/triangle/">Is That Point Inside My Triangle?</a>
     </h1>
   
 
@@ -95,18 +95,54 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Today I’ll start with a deceptively simple problem:</p>
-<blockquote><p>Given a triangle $\triangle ABC$ and a point $P$, determine whether $P$ lies within $\triangle ABC$.</p>
-</blockquote>
-<p>This seems like a very fundamental problem – and it is!</p>
+        <p>Today I’ll start with a deceptively simple problem: <em>Given a triangle $\triangle ABC$ and a point $P$, determine whether $P$ lies within $\triangle ABC$.</em> This seems like a very fundamental problem – and it is! Understand this, and you’re well on your way to understanding real-time computer graphics. More on that later.</p>
+<h2 id="Setting_up_the_problem"><a href="#Setting_up_the_problem" class="headerlink" title="Setting up the problem"></a>Setting up the problem</h2><p>Let’s talk in math first. Later, we can figure out how to implement an algorithm using JavaScript. We first need to make sure we know exactly what the problem is asking. Let’s assume that the points $A$, $B$, $C$, and $P$ all lie in the same plane, $\mathbb{R}^2$. We’ll give them $x, y$ coordinates as follows:</p>
+<span>$$\begin{aligned}
+A &amp;= (a_x, a_y) \\
+B &amp;= (b_x, b_y) \qquad \text{and} \qquad P = (p_x, p_y) \\
+C &amp;= (c_x, c_y)
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>There are two questions. First, are $A$, $B$, and $C$ collinear? If they are, then $P$ cannot possibly lie <em>inside</em> the “triangle” described. (Checking this first might save some computation later on.) With that out of the way, we’ll get straight to determining whether $P$ is inside $\triangle ABC$.</p>
+<h2 id="Are__24A_24_2C__24B_24_2C_and__24C_24_collinear_3F"><a href="#Are__24A_24_2C__24B_24_2C_and__24C_24_collinear_3F" class="headerlink" title="Are $A$, $B$, and $C$ collinear?"></a>Are $A$, $B$, and $C$ collinear?</h2><p>A simple way to answer this question is to determine if the line $\overline{AB}$ has the same <em>slope</em> as the line $\overline{AC}$. If they do have the same slope, then, because they both pass though $A$, they must be the same line! We have</p>
+<span>$$\begin{aligned}
+\text{slope of } \overline{AB} &amp;= \frac{\Delta y}{\Delta x} = \frac{b_y - a_y}{b_x - a_x} \\
+\text{slope of } \overline{AC} &amp;= \frac{\Delta y}{\Delta x} = \frac{c_y - a_y}{c_x - a_x}
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>This leads to the following useful result: $A$, $B$, and $C$ collinear if and only if</p>
+<span>$$\begin{aligned}
+\text{slope of } \overline{AB} &amp;= \text{slope of } \overline{AC} \\
+\frac{b_y - a_y}{b_x - a_x} &amp;= \frac{c_y - a_y}{c_x - a_x}
+\end{aligned} \\
+\boxed{(b_y - a_y)(c_x - a_x) = (c_y - a_y)(b_x - a_x)\;}$$</span><!-- Has MathJax -->
+<p>That looks great! We can easily turn that into code. (With a little thought, it’s easy to see that this handles the case where $a_x = b_x = c_x$ and gives no false positives.)</p>
+<h2 id="Is__24P_24_inside__24_5Ctriangle_ABC_24_3F"><a href="#Is__24P_24_inside__24_5Ctriangle_ABC_24_3F" class="headerlink" title="Is $P$ inside $\triangle ABC$?"></a>Is $P$ inside $\triangle ABC$?</h2><p>There are many different ways to do this. My favorite method uses cross products. Let $\vec{a}$ be the vector with its base at $P$ and head at $A$. Define $\vec{b}$ and $\vec{c}$ similarly. Intuitively (using the <a href="https://en.wikipedia.org/wiki/Right-hand_rule#Cross_products" target="_blank" rel="external">right-hand rule</a>), <strong>if $\vec{a} \times \vec{b}$ and $\vec{b} \times \vec{c}$ and $\vec{c} \times \vec{a}$ all point in the same direction, then $P$ is in $\triangle ABC$.</strong> Let’s make that more specific.</p>
+<p>First, here are specific values for $\vec{a}$, $\vec{b}$, and $\vec{c}$:</p>
+<span>$$\begin{aligned}
+\vec{a} &amp;= \vec{A} - \vec{P} = \langle a_x - p_x,\; a_y - p_y \rangle \\
+\vec{b} &amp;= \vec{B} - \vec{P} = \langle b_x - p_x,\; b_y - p_y \rangle \\
+\vec{c} &amp;= \vec{C} - \vec{P} = \langle c_x - p_x,\; c_y - p_y \rangle \\
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>Now, recall that the cross product of vectors $\vec{u} = \langle u_x, u_y, u_z \rangle$ and $\vec{v} = \langle v_x, v_y, v_z \rangle$ is</p>
+<span>$$\begin{aligned}
+\vec{u} \times \vec{v} = \langle u_yv_z - u_zv_y,\; u_zv_x - u_xv_z,\; u_xv_y - u_yv_x \rangle
+\end{aligned}$$</span><!-- Has MathJax -->
+<p>Our vectors $\vec{a}$, $\vec{b}$, and $\vec{c}$ all lie in the $xy$-plane, meaning they all have a zero $z$-component. Looking at the formula above, this means that the cross products we’re interested in ($\vec{a} \times \vec{b}$ and $\vec{b} \times \vec{c}$ and $\vec{c} \times \vec{a}$) are only going to have nonzero values in their $z$-components.</p>
+<p>We now have the final piece of the puzzle: <strong>$P$ lies inside $\triangle ABC$ if and only if $(\vec{a} \times \vec{b})_z$ and $(\vec{b} \times \vec{c})_z$ and $(\vec{c} \times \vec{a})_z$ are either all positive or all negative</strong>. We can compute, e.g., $(\vec{a} \times \vec{b})_z$ as follows:</p>
+<span>$$\begin{aligned}
+(\vec{a} \times \vec{b})_z &amp;= \vec{a}_x \vec{b}_y - \vec{a}_y \vec{b}_x \\
+&amp;= (a_x - p_x)(b_y - p_y) - (a_y - p_y)(b_x - p_x)
+\end{aligned}$$</span><!-- Has MathJax -->
+<h2 id="Turn_it_into_code_21"><a href="#Turn_it_into_code_21" class="headerlink" title="Turn it into code!"></a>Turn it into code!</h2><p>We’ve done all the hard thinking already; all that remains is careful bookkeeping.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">crossProductZ</span>(<span class="params">u_x, u_y, v_x, v_y</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> u_x * v_y - u_y * v_x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPinABC</span>(<span class="params">a_x, a_y, b_x, b_y, c_x, c_y, p_x, p_y</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// determine if A, B, and C are collinear</span></span><br><span class="line">  <span class="keyword">if</span> ((b_y - a_y) * (c_x - a_x) === (c_y - a_y) * (b_x - a_x)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// calculate all those cross products</span></span><br><span class="line">  <span class="keyword">var</span> axb = crossProductZ( a_x - p_x, a_y - p_y,  b_x - p_x, b_y - p_y );</span><br><span class="line">  <span class="keyword">var</span> bxc = crossProductZ( b_x - p_x, b_y - p_y,  c_x - p_x, c_y - p_y );</span><br><span class="line">  <span class="keyword">var</span> cxa = crossProductZ( c_x - p_x, c_y - p_y,  a_x - p_x, a_y - p_y );</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (axb &gt; <span class="number">0</span> &amp;&amp; bxc &gt; <span class="number">0</span> &amp;&amp; cxa &gt; <span class="number">0</span>) || (axb &lt; <span class="number">0</span> &amp;&amp; bxc &lt; <span class="number">0</span> &amp;&amp; cxa &lt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="What_does_this_have_to_do_with_computer_graphics_3F"><a href="#What_does_this_have_to_do_with_computer_graphics_3F" class="headerlink" title="What does this have to do with computer graphics?"></a>What does this have to do with computer graphics?</h2><p>A lot, actually!</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/02/11/triangle/" data-id="cikijn37700002z2fregtth3h" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/02/11/triangle/" data-id="cikjedcj40008xm2f27cnx1fd" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/geometry/">geometry</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linear-algebra/">linear algebra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vectors/">vectors</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/geometry/">geometry</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/vectors/">vectors</a></li></ul>
 
     </footer>
   </div>
@@ -161,7 +197,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/15/combinations/" data-id="cijgpoiah000wjr2feczrjp9v" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/15/combinations/" data-id="cikjedcik0000xm2fsff6wqxp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/algorithms/">algorithms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/combinatorics/">combinatorics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li></ul>
@@ -218,7 +254,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cijdw7m6w000bjr2fx5jpmjmm" class="article-share-link">Share</a>
+      <a data-url="https://babelthuap.github.io/blog/2016/01/13/permutations/" data-id="cikjedcja000hxm2f4v7omowl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/algorithms/">algorithms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/combinatorics/">combinatorics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/recursion/">recursion</a></li></ul>
@@ -261,7 +297,7 @@ ga('send', 'pageview');
       <ul>
         
           <li>
-            <a href="/blog/2016/02/11/triangle/">Triangle</a>
+            <a href="/blog/2016/02/11/triangle/">Is That Point Inside My Triangle?</a>
           </li>
         
           <li>
@@ -289,7 +325,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/blog/tags/algorithms/" style="font-size: 15px;">algorithms</a> <a href="/blog/tags/coding-house/" style="font-size: 20px;">coding house</a> <a href="/blog/tags/combinatorics/" style="font-size: 15px;">combinatorics</a> <a href="/blog/tags/fibonacci/" style="font-size: 10px;">fibonacci</a> <a href="/blog/tags/geometry/" style="font-size: 10px;">geometry</a> <a href="/blog/tags/hackathon/" style="font-size: 10px;">hackathon</a> <a href="/blog/tags/heroku/" style="font-size: 10px;">heroku</a> <a href="/blog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/blog/tags/linear-algebra/" style="font-size: 10px;">linear algebra</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/blog/tags/teaching/" style="font-size: 10px;">teaching</a> <a href="/blog/tags/vectors/" style="font-size: 10px;">vectors</a>
+      <a href="/blog/tags/algorithms/" style="font-size: 15px;">algorithms</a> <a href="/blog/tags/coding-house/" style="font-size: 20px;">coding house</a> <a href="/blog/tags/combinatorics/" style="font-size: 15px;">combinatorics</a> <a href="/blog/tags/fibonacci/" style="font-size: 10px;">fibonacci</a> <a href="/blog/tags/geometry/" style="font-size: 10px;">geometry</a> <a href="/blog/tags/hackathon/" style="font-size: 10px;">hackathon</a> <a href="/blog/tags/heroku/" style="font-size: 10px;">heroku</a> <a href="/blog/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/blog/tags/node/" style="font-size: 10px;">node</a> <a href="/blog/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/blog/tags/teaching/" style="font-size: 10px;">teaching</a> <a href="/blog/tags/vectors/" style="font-size: 10px;">vectors</a>
     </div>
   </div>
 
